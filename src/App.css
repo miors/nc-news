@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+.App {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content auto auto;
+  grid-template-areas:
+    "header"
+    "nav"
+    "content";
+}
+
+@media only screen and (min-width: 600px) {
+  .App {
+    grid-template-columns: 25% 75%;
+    grid-template-rows: min-content auto;
+    grid-template-areas:
+      "header header"
+      "nav content";
+  }
+}
+
+.header {
+  background-color: lime;
+}
+
+.nav {
+  background-color: yellow;
+}
+
+.content {
+  background-color: aqua;
+}
