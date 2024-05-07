@@ -72,3 +72,7 @@
 .content {
   background-color: aqua;
 }
+
+.nav button {
+  margin: 5px;
+}

@@ -30,4 +30,17 @@ const getArticle = (article_id) => {
     });
 };
 
-export default { getAllArticles, getArticle };
+const getCommentsByArticleID = (article_id) => {
+  return ncNewsApi
+    .get(`/articles/${article_id}/comments`)
+    .then((res) => {
+      return res.data.comments;
+    })
+    .catch((err) => {
+      if (err.name === "AxiosError") {
+        console.log("An error occured");
+      }
+    });
+};
+
+export default { getAllArticles, getArticle, getCommentsByArticleID };

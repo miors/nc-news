@@ -1,0 +1,10 @@
+.indiv-comment {
+  background-color: lightgray;
+  margin: 1em;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.comments-container {
+  background-color: cornflowerblue;
+}
