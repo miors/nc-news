@@ -17,4 +17,17 @@ const getAllArticles = () => {
     });
 };
 
-export default { getAllArticles };
+const getArticle = (article_id) => {
+  return ncNewsApi
+    .get(`/articles/${article_id}`)
+    .then((res) => {
+      return res.data.article;
+    })
+    .catch((err) => {
+      if (err.name === "AxiosError") {
+        console.log("An error occured");
+      }
+    });
+};
+
+export default { getAllArticles, getArticle };
