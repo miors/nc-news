@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 
 export default function Article({ article }) {
   const navigate = useNavigate();
+  const dateFormatter = (created_at) => {
+    return new Date(created_at).toLocaleDateString();
+  };
 
   function handleButtonClick() {
     navigate(`/article/${article.article_id}`);
@@ -12,7 +15,7 @@ export default function Article({ article }) {
     <li key={article.article_id} className="articleBox">
       <h2>{article.title}</h2>
       <h3>Topic: {article.topic}</h3>
-      <h4>Created at: {article.created_at}</h4>
+      <h4>Created at: {dateFormatter(article.created_at)}</h4>
       <p>Author: {article.author}</p>
       <img src={article.article_img_url} />
       <p>Comment counts: {article.comment_count}</p>
