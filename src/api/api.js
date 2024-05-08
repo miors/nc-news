@@ -43,4 +43,18 @@ const getCommentsByArticleID = (article_id) => {
     });
 };
 
-export default { getAllArticles, getArticle, getCommentsByArticleID };
+const updateArticleByArticleID = (vote, article_id) => {
+  const jsonBody = {
+    inc_votes: vote,
+  };
+  return ncNewsApi.patch(`/articles/${article_id}`, jsonBody).then((res) => {
+    return res.data;
+  });
+};
+
+export default {
+  getAllArticles,
+  getArticle,
+  getCommentsByArticleID,
+  updateArticleByArticleID,
+};
