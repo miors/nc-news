@@ -8,29 +8,11 @@ import Article from "./components/Article";
 import { Routes, Route } from "react-router-dom";
 import api from "./api/api";
 import Nav from "./components/Nav";
-
+import Categories from "./components/Categories";
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [articlesList, setArticlesList] = useState([]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    api.getAllArticles().then((listOfArticles) => {
-      setArticlesList(listOfArticles);
-      setIsLoading(false);
-    });
-  }, []);
-
-  if (isLoading)
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
   return (
     <>
       <div className="App"></div>
-      Inside App
       <div className="header">
         <h1>NC & Mior's News</h1>
       </div>
@@ -39,10 +21,8 @@ function App() {
       </div>
       <div className="content">
         <Routes>
-          <Route
-            path="/articles"
-            element={<AllArticlesPage articlesList={articlesList} />}
-          />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/articles" element={<AllArticlesPage />} />
           <Route path="/article/:article_id" element={<IndArticlePage />} />
         </Routes>
       </div>
