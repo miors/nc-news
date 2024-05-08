@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../api/api";
 import "./Comments.css";
 import utils from "../utils";
-import { useNavigate } from "react-router-dom";
-
 export default function Comments({ article }) {
-  const navigate = useNavigate();
   const { article_id } = useParams();
   const [commentList, setCommentList] = useState([]);
   const [showAddCommentForm, setShowAddCommentForm] = useState(false);
