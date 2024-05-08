@@ -4,9 +4,13 @@ const ncNewsApi = axios.create({
   baseURL: "https://be-nc-news-mior.onrender.com/api",
 });
 
-const getAllArticles = () => {
+const getAllArticles = (categories) => {
+  let path = "/articles";
+  if (categories) {
+    path += `?topic=${categories}`;
+  }
   return ncNewsApi
-    .get("/articles")
+    .get(path)
     .then((res) => {
       return res.data.articles;
     })
@@ -78,6 +82,19 @@ const deleteCommentByCommentID = (comment_id) => {
   });
 };
 
+const getCategories = () => {
+  return ncNewsApi
+    .get(`/topics`)
+    .then((res) => {
+      return res.data.topics;
+    })
+    .catch((err) => {
+      if (err.name === "AxiosError") {
+        console.log("An error occured");
+      }
+    });
+};
+
 export default {
   getAllArticles,
   getArticle,
@@ -85,4 +102,5 @@ export default {
   updateArticleByArticleID,
   addCommentByArticleID,
   deleteCommentByCommentID,
+  getCategories,
 };
