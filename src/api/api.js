@@ -52,9 +52,27 @@ const updateArticleByArticleID = (vote, article_id) => {
   });
 };
 
+const addCommentByArticleID = (article_id, body, username = "grumpy19") => {
+  const jsonBody = {
+    username,
+    body,
+  };
+  return ncNewsApi
+    .post(`/articles/${article_id}/comments`, jsonBody)
+    .then((res) => {
+      return res.data.comment;
+    })
+    .catch((err) => {
+      if (err.name === "AxiosError") {
+        console.log("An error occured");
+      }
+    });
+};
+
 export default {
   getAllArticles,
   getArticle,
   getCommentsByArticleID,
   updateArticleByArticleID,
+  addCommentByArticleID,
 };
