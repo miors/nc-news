@@ -69,10 +69,20 @@ const addCommentByArticleID = (article_id, body, username = "grumpy19") => {
     });
 };
 
+const deleteCommentByCommentID = (comment_id) => {
+  return ncNewsApi.delete(`/comments/${comment_id}`).catch((err) => {
+    if (err.name === "AxiosError") {
+      console.log("An error occured");
+    }
+    console.log(err);
+  });
+};
+
 export default {
   getAllArticles,
   getArticle,
   getCommentsByArticleID,
   updateArticleByArticleID,
   addCommentByArticleID,
+  deleteCommentByCommentID,
 };
