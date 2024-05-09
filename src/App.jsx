@@ -9,6 +9,8 @@ import { Routes, Route } from "react-router-dom";
 import api from "./api/api";
 import Nav from "./components/Nav";
 import Categories from "./components/Categories";
+import ErrorPage from "./components/ErrorPage";
+import HomePage from "./components/HomePage";
 function App() {
   return (
     <>
@@ -21,9 +23,11 @@ function App() {
       </div>
       <div className="content">
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/articles" element={<AllArticlesPage />} />
           <Route path="/article/:article_id" element={<IndArticlePage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </>

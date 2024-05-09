@@ -11,19 +11,40 @@ export default function AllArticlesPage() {
   const order = searchParams.get("order");
   const [isLoading, setIsLoading] = useState(true);
   const [articlesList, setArticlesList] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    api.getAllArticles(categories, sortBy, order).then((listOfArticles) => {
-      setArticlesList(listOfArticles);
-      setIsLoading(false);
-    });
+    api
+      .getAllArticles(categories, sortBy, order)
+      .then((listOfArticles) => {
+        setArticlesList(listOfArticles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err.message === "Network Error") {
+          setIsLoading(false);
+        }
+        setIsError(true);
+      });
   }, [categories, sortBy, order]);
 
   if (isLoading)
     return (
       <div>
         <p>Loading...</p>
+      </div>
+    );
+  if (isError)
+    return (
+      <div>
+        <p>Unable to fetch article. Please try again</p>
+      </div>
+    );
+  if (articlesList.length === 0)
+    return (
+      <div>
+        <p>No articles exist</p>
       </div>
     );
 
