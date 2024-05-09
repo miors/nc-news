@@ -26,7 +26,7 @@ export default function AllArticlesPage() {
 
   return (
     <div>
-      <h1>List of all articles</h1>
+      <h1>List of {categories ? ` ${categories}` : ` all`} articles</h1>
       <ul>
         {articlesList.map((article) => {
           return (
