@@ -11,38 +11,19 @@ const getAllArticles = (categories, sortBy, order) => {
     })
     .then((res) => {
       return res.data.articles;
-    })
-    .catch((err) => {
-      if (err.name === "AxiosError") {
-        console.log("An error occured");
-      }
     });
 };
 
 const getArticle = (article_id) => {
-  return ncNewsApi
-    .get(`/articles/${article_id}`)
-    .then((res) => {
-      return res.data.article;
-    })
-    .catch((err) => {
-      if (err.name === "AxiosError") {
-        console.log("An error occured");
-      }
-    });
+  return ncNewsApi.get(`/articles/${article_id}`).then((res) => {
+    return res.data.article;
+  });
 };
 
 const getCommentsByArticleID = (article_id) => {
-  return ncNewsApi
-    .get(`/articles/${article_id}/comments`)
-    .then((res) => {
-      return res.data.comments;
-    })
-    .catch((err) => {
-      if (err.name === "AxiosError") {
-        console.log("An error occured");
-      }
-    });
+  return ncNewsApi.get(`/articles/${article_id}/comments`).then((res) => {
+    return res.data.comments;
+  });
 };
 
 const updateArticleByArticleID = (vote, article_id) => {
@@ -81,16 +62,9 @@ const deleteCommentByCommentID = (comment_id) => {
 };
 
 const getCategories = () => {
-  return ncNewsApi
-    .get(`/topics`)
-    .then((res) => {
-      return res.data.topics;
-    })
-    .catch((err) => {
-      if (err.name === "AxiosError") {
-        console.log("An error occured");
-      }
-    });
+  return ncNewsApi.get(`/topics`).then((res) => {
+    return res.data.topics;
+  });
 };
 
 export default {
